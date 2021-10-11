@@ -1,7 +1,7 @@
 package stats
 
 import (
-	"github.com/tursunkhuja/bank/pkg/types"
+	"github.com/tursunkhuja/bank/v2/pkg/types"
 )
 
 //Avg calculate avarage sum of payments
