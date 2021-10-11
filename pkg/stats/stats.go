@@ -9,6 +9,9 @@ func Avg(payments []types.Payment) types.Money {
 	sum := int64(0)
 	i := 0
 	for _, payment := range payments {
+if payment. {
+	
+}
 		sum += int64(payment.Amount)
 		i += 1
 	}
