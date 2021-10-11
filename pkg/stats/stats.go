@@ -1,15 +1,12 @@
 package stats
 
-import "github.com/tursunkhuja/bank/v2/pkg/types"
+import "github.com/Tursunkhuja/bank/v2/pkg/types"
 
 //Avg calculate avarage sum of payments
 func Avg(payments []types.Payment) types.Money {
 	sum := int64(0)
 	i := 0
 	for _, payment := range payments {
-if payment. {
-	
-}
 		sum += int64(payment.Amount)
 		i += 1
 	}
