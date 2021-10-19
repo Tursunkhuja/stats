@@ -7,7 +7,7 @@ import (
 	"github.com/Tursunkhuja/bank/v2/pkg/types"
 )
 
-func PeriodsDynamic_test(t *testing.T) {
+func Test_PeriodsDynamic(t *testing.T) {
 	firstP := map[types.Category]types.Money{
 		"auto": 10,
 		"food": 20,
@@ -29,7 +29,7 @@ func PeriodsDynamic_test(t *testing.T) {
 	}
 }
 
-func CategoriesAvg_test(t *testing.T) {
+func Test_CategoriesAvg(t *testing.T) {
 	payments := []types.Payment{
 		{ID: 1, Category: "auto", Amount: 2_000_00},
 		{ID: 2, Category: "food", Amount: 2_000_00},
