@@ -1,27 +1,31 @@
 package stats
 
 import (
-	"fmt"
+	"reflect"
+	"testing"
 
 	"github.com/Tursunkhuja/bank/v2/pkg/types"
 )
 
-func ExampleAvg() {
-	payments := []types.Payment{}
-	payments = append(payments, types.Payment{ID: 1, Amount: 10})
-	payments = append(payments, types.Payment{ID: 2, Amount: 8})
+func TestCategoriesAvg(t *testing.T) {
+	payments := []types.Payment{
+		{ID: 1, Category: "auto", Amount: 2_000_00},
+		{ID: 2, Category: "food", Amount: 2_000_00},
+		{ID: 3, Category: "auto", Amount: 3_000_00},
+		{ID: 4, Category: "auto", Amount: 4_000_00},
+		{ID: 5, Category: "fun", Amount: 2_000_00},
+		{ID: 6, Category: "fun", Amount: 2_000_00},
+	}
 
-	avg := Avg(payments)
-	fmt.Println(avg)
-	// Output: 9
-}
-func ExampleTotalInCategory() {
-	payments := []types.Payment{}
-	payments = append(payments, types.Payment{ID: 1, Amount: 10, Category: "A"})
-	payments = append(payments, types.Payment{ID: 2, Amount: 8, Category: "B"})
-	payments = append(payments, types.Payment{ID: 3, Amount: 5, Category: "A"})
+	expected := map[types.Category]types.Money{
+		"auto": 3_000_00,
+		"food": 2_000_00,
+		"fun":  2_000_00,
+	}
 
-	result := TotalInCategory(payments, "A")
-	fmt.Println(result)
-	// Output: 15
+	result := CategoriesAvg(payments)
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("invalid result, expected: %v, actual: %v", expected, result)
+	}
 }

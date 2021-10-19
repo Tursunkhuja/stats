@@ -2,29 +2,20 @@ package stats
 
 import "github.com/Tursunkhuja/bank/v2/pkg/types"
 
-//Avg calculate avarage sum of payments
-func Avg(payments []types.Payment) types.Money {
-	sum := int64(0)
-	i := 0
+func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
+
+	categoriesTotalAmount := map[types.Category]types.Money{}
+	categoriesCount := map[types.Category]types.Money{}
+	categories := map[types.Category]types.Money{}
+
 	for _, payment := range payments {
-		if payment.Status != types.StatusFail {
-			sum += int64(payment.Amount)
-			i += 1
-		}
+		categoriesTotalAmount[payment.Category] += payment.Amount
+		categoriesCount[payment.Category] += 1
 	}
 
-	result := sum / int64(i)
-	return types.Money(result)
-}
-
-//TotalInCategory returns sum of payments in specific category
-func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
-	sum := int64(0)
-	for _, payment := range payments {
-		if payment.Category == category && payment.Status != types.StatusFail {
-			sum += int64(payment.Amount)
-		}
+	for category, amount := range categoriesTotalAmount {
+		categories[category] = amount / categoriesCount[category]
 	}
 
-	return types.Money(sum)
+	return categories
 }
