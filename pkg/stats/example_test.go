@@ -7,6 +7,28 @@ import (
 	"github.com/Tursunkhuja/bank/v2/pkg/types"
 )
 
+func PeriodsDynamic_test(t *testing.T) {
+	firstP := map[types.Category]types.Money{
+		"auto": 10,
+		"food": 20,
+	}
+	secondP := map[types.Category]types.Money{
+		"auto": 5,
+		"food": 3,
+	}
+
+	expected := map[types.Category]types.Money{
+		"auto": -5,
+		"food": -17,
+	}
+
+	result := PeriodsDynamic(firstP, secondP)
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("invalid result, expected: %v, actual: %v", expected, result)
+	}
+}
+
 func CategoriesAvg_test(t *testing.T) {
 	payments := []types.Payment{
 		{ID: 1, Category: "auto", Amount: 2_000_00},

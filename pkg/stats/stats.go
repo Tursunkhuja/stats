@@ -2,6 +2,15 @@ package stats
 
 import "github.com/Tursunkhuja/bank/v2/pkg/types"
 
+func PeriodsDynamic(first map[types.Category]types.Money, second map[types.Category]types.Money) map[types.Category]types.Money {
+	results := map[types.Category]types.Money{}
+	for category, amount := range second {
+		results[category] = amount - first[category]
+	}
+
+	return results
+}
+
 func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
 
 	categoriesTotalAmount := map[types.Category]types.Money{}
