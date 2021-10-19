@@ -4,6 +4,15 @@ import "github.com/Tursunkhuja/bank/v2/pkg/types"
 
 func PeriodsDynamic(first map[types.Category]types.Money, second map[types.Category]types.Money) map[types.Category]types.Money {
 	results := map[types.Category]types.Money{}
+
+	for category, _ := range first {
+		_, ok := second[category]
+		if ok {
+		} else {
+			second[category] = 0
+		}
+	}
+
 	for category, amount := range second {
 		results[category] = amount - first[category]
 	}
