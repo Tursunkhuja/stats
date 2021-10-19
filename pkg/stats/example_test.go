@@ -7,7 +7,7 @@ import (
 	"github.com/Tursunkhuja/bank/v2/pkg/types"
 )
 
-func TestCategoriesAvg(t *testing.T) {
+func CategoriesAvg_test(t *testing.T) {
 	payments := []types.Payment{
 		{ID: 1, Category: "auto", Amount: 2_000_00},
 		{ID: 2, Category: "food", Amount: 2_000_00},
